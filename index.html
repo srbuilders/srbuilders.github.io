@@ -1,0 +1,2274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SR Builders – Project Enquiries</title>
+  <meta name="description"
+    content="SR Builders – Building smart spaces since 2019. Reach our division experts instantly via WhatsApp for Residential, Commercial, and Industrial projects." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="icon" type="image/png" href="logo.png">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    /* ── RESET & TOKENS ── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --slate: #2C3E50;
+      --slate-dark: #1a252f;
+      --slate-mid: #3d5166;
+      --white: #FFFFFF;
+      --gold: #D4AF37;
+      --gold-light: #e8c84a;
+      --gold-dark: #b8962e;
+      --bg: #f0f2f5;
+      --muted: #6b7a8d;
+      --radius: 16px;
+      --shadow: 0 8px 40px rgba(44, 62, 80, 0.12);
+      --shadow-hover: 0 22px 60px rgba(44, 62, 80, 0.20);
+      --ease: 0.36s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--slate);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Subtle ambient glow */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 45% at 5% 0%, rgba(212, 175, 55, 0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 55% 35% at 95% 100%, rgba(44, 62, 80, 0.07) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #f8f7f3;
+      border-bottom: 3px solid var(--gold);
+      padding: 0 36px;
+      height: 110px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 24px rgba(44, 62, 80, 0.10);
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .logo-img {
+      height: 104px;
+      width: auto;
+      display: block;
+      transition: opacity 0.2s ease;
+    }
+
+    .logo-wrap:hover .logo-img {
+      opacity: 0.85;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-link {
+      position: relative;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 13.5px;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      color: var(--slate);
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: color 0.2s ease, background 0.2s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 14px;
+      right: 14px;
+      height: 2px;
+      background: var(--gold);
+      border-radius: 2px;
+      transform: scaleX(0);
+      transition: transform 0.25s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--gold-dark);
+      background: rgba(212, 175, 55, 0.08);
+    }
+
+    .nav-link:hover::after {
+      transform: scaleX(1);
+    }
+
+    .nav-link.active {
+      color: var(--gold-dark);
+    }
+
+    .nav-link.active::after {
+      transform: scaleX(1);
+    }
+
+    /* hamburger for mobile */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--slate);
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 80px 24px 64px;
+      background: var(--slate-dark);
+      overflow: hidden;
+    }
+
+    #aurora-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 700px 350px at 50% 0%, rgba(212, 175, 55, 0.06) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent 0%, var(--gold) 50%, transparent 100%);
+      z-index: 2;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(212, 175, 55, 0.10);
+      border: 1px solid rgba(212, 175, 55, 0.28);
+      border-radius: 100px;
+      padding: 6px 18px;
+      margin-bottom: 22px;
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+    }
+
+    .hero-tag::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      animation: blink 2.2s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: .4;
+        transform: scale(.65);
+      }
+    }
+
+    .hero h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: clamp(30px, 5vw, 58px);
+      color: var(--white);
+      line-height: 1.08;
+      letter-spacing: -1px;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 em {
+      color: var(--gold);
+      font-style: normal;
+    }
+
+    .hero-sub {
+      font-size: clamp(14px, 1.8vw, 17px);
+      color: rgba(255, 255, 255, 0.60);
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.75;
+    }
+
+    /* ── SECTION WRAPPER ── */
+    .section-wrap {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 1340px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── ENQUIRY GRID (CARDS) ── */
+    .enquiry-section {
+      padding: 72px 0 80px;
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 40px;
+    }
+
+    .section-label-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(212, 175, 55, 0.5), transparent);
+    }
+
+    .section-label-text {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      color: var(--gold);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .divisions-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+
+    /* ── CARD ── */
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      transition: transform var(--ease), box-shadow var(--ease);
+      opacity: 0;
+      animation: rise .65s ease forwards;
+    }
+
+    .card:nth-child(1) {
+      animation-delay: .10s;
+    }
+
+    .card:nth-child(2) {
+      animation-delay: .24s;
+    }
+
+    .card:nth-child(3) {
+      animation-delay: .38s;
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card:hover {
+      transform: translateY(-9px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .card:hover .card-photo img {
+      transform: scale(1.06);
+    }
+
+    .card:hover .photo-veil {
+      opacity: .85;
+    }
+
+    .card-photo {
+      position: relative;
+      height: 255px;
+      overflow: hidden;
+    }
+
+    .card-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform var(--ease);
+    }
+
+    .photo-veil {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(26, 37, 47, .65) 0%, transparent 55%);
+      opacity: .55;
+      transition: opacity var(--ease);
+    }
+
+    .card-tag {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      z-index: 2;
+      background: var(--gold);
+      color: var(--slate-dark);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 9.5px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 100px;
+    }
+
+    .card-body {
+      padding: 26px 26px 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      flex: 1;
+    }
+
+    .card-icon-wrap {
+      width: 46px;
+      height: 46px;
+      background: linear-gradient(135deg, rgba(212, 175, 55, .14) 0%, rgba(212, 175, 55, .04) 100%);
+      border: 1.5px solid rgba(212, 175, 55, .28);
+      border-radius: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 21px;
+      margin-bottom: 2px;
+    }
+
+    .card-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 21px;
+      color: var(--slate-dark);
+      line-height: 1.2;
+    }
+
+    .card-desc {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .card-rule {
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      opacity: .38;
+      margin: 2px 0;
+    }
+
+    .wa-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      background: linear-gradient(135deg, #25D366 0%, #1cb956 100%);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 13.5px;
+      letter-spacing: .4px;
+      text-decoration: none;
+      padding: 14px 18px;
+      border-radius: 10px;
+      margin-top: 4px;
+      box-shadow: 0 4px 18px rgba(37, 211, 102, .28);
+      transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+    }
+
+    .wa-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 26px rgba(37, 211, 102, .42);
+      filter: brightness(1.05);
+    }
+
+    .wa-btn:active {
+      transform: translateY(0);
+    }
+
+    .wa-btn svg {
+      flex-shrink: 0;
+    }
+
+    /* ── ABOUT SECTION ── */
+    .about-section {
+      padding: 0 0 88px;
+      scroll-margin-top: 150px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    /* Story card – spans full left column */
+    .story-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid rgba(44, 62, 80, .08);
+      padding: 36px 36px 40px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      height: 100%;
+    }
+
+    .about-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid rgba(44, 62, 80, .08);
+      padding: 30px 30px 34px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    /* right column stacks 2 cards */
+    .about-right {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* accent-bar heading */
+    .card-heading {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .card-heading-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .icon-orange {
+      background: linear-gradient(135deg, #e06c1a, #c45a10);
+    }
+
+    .icon-teal {
+      background: linear-gradient(135deg, #0f8c8c, #0a6e6e);
+    }
+
+    .icon-green {
+      background: linear-gradient(135deg, #1a8c5c, #0f6e47);
+    }
+
+    .card-heading h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      color: var(--slate-dark);
+    }
+
+    .about-card .card-heading h3 {
+      color: var(--slate-dark);
+    }
+
+    .story-body {
+      font-size: 14px;
+      line-height: 1.78;
+      color: var(--muted);
+    }
+
+    .story-body p+p {
+      margin-top: 14px;
+    }
+
+    .story-quote {
+      font-size: 14px;
+      font-weight: 600;
+      font-style: italic;
+      color: var(--gold);
+      border-left: 3px solid var(--gold);
+      padding-left: 14px;
+      margin-top: 4px;
+      line-height: 1.6;
+    }
+
+    .about-body {
+      font-size: 14px;
+      line-height: 1.78;
+      color: var(--muted);
+    }
+
+    /* ── STATS STRIP ── */
+    .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background: var(--slate-dark);
+      border-radius: var(--radius);
+      border: 1px solid rgba(212, 175, 55, .15);
+      overflow: hidden;
+      margin-bottom: 88px;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, .16);
+    }
+
+    .stat-item {
+      padding: 36px 20px;
+      text-align: center;
+      border-right: 1px solid rgba(212, 175, 55, .1);
+      transition: background .3s;
+    }
+
+    .stat-item:last-child {
+      border-right: none;
+    }
+
+    .stat-item:hover {
+      background: rgba(212, 175, 55, .05);
+    }
+
+    .stat-num {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 38px;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, .45);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    /* ── PROJECTS SECTION ── */
+    .projects-section {
+      background: #ffffff;
+      padding: 88px 0;
+      border-top: 1px solid rgba(44, 62, 80, 0.05);
+      scroll-margin-top: 120px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .p-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid rgba(44, 62, 80, 0.08);
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .p-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.08);
+    }
+
+    .p-img-area {
+      position: relative;
+      height: 220px;
+      overflow: hidden;
+    }
+
+    .p-img-area img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .p-tag {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      padding: 4px 12px;
+      background: rgba(44, 62, 80, 0.85);
+      backdrop-filter: blur(4px);
+      color: var(--white);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .p-icon-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 18px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .p-content {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+    }
+
+    .p-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 19px;
+      color: var(--slate-dark);
+      text-transform: uppercase;
+      line-height: 1.25;
+    }
+
+    .p-subtitle {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+      font-weight: 500;
+      min-height: 3.2em;
+    }
+
+    .p-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid rgba(44, 62, 80, 0.06);
+    }
+
+    .p-meta-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 12.5px;
+      color: var(--slate-mid);
+      line-height: 1.4;
+    }
+
+    .p-meta-item svg {
+      flex-shrink: 0;
+      margin-top: 2px;
+      color: var(--gold);
+    }
+
+    .p-value-text {
+      font-weight: 700;
+      color: var(--slate-dark);
+    }
+
+    @media (max-width: 1024px) {
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 680px) {
+      .projects-section {
+        padding: 64px 0;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+    }
+
+    /* ── PROJECTS SECTION ── */
+    .projects-section {
+      background: var(--white);
+      padding: 88px 0;
+      border-top: 1px solid rgba(44, 62, 80, 0.05);
+      scroll-margin-top: 120px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .p-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid rgba(44, 62, 80, 0.08);
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .p-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.08);
+    }
+
+    .p-img-area {
+      position: relative;
+      height: 220px;
+      overflow: hidden;
+    }
+
+    .p-img-area img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .p-tag {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      padding: 4px 12px;
+      background: rgba(44, 62, 80, 0.85);
+      backdrop-filter: blur(4px);
+      color: var(--white);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .p-icon-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 18px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .p-content {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+    }
+
+    .p-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 19px;
+      color: var(--slate-dark);
+      text-transform: uppercase;
+      line-height: 1.25;
+    }
+
+    .p-subtitle {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+      font-weight: 500;
+      min-height: 3.2em;
+    }
+
+    .p-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid rgba(44, 62, 80, 0.06);
+    }
+
+    .p-meta-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 12.5px;
+      color: var(--slate-mid);
+      line-height: 1.4;
+    }
+
+    .p-meta-item svg {
+      flex-shrink: 0;
+      margin-top: 2px;
+      color: var(--gold);
+    }
+
+    .p-value-text {
+      font-weight: 700;
+      color: var(--slate-dark);
+    }
+
+    @media (max-width: 1024px) {
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 680px) {
+      .projects-section {
+        padding: 64px 0;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      background: var(--slate-dark);
+      border-top: 2px solid rgba(212, 175, 55, .18);
+      text-align: center;
+      padding: 28px 24px;
+    }
+
+    .footer-text {
+      font-size: 12px;
+      color: rgba(255, 255, 255, .32);
+      letter-spacing: .4px;
+    }
+
+    .footer-text strong {
+      color: rgba(212, 175, 55, .55);
+    }
+
+    /* ── RESPONSIVE TABLET ── */
+    @media (max-width: 1024px) {
+      .divisions-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .card:last-child {
+        grid-column: 1 / -1;
+        max-width: 460px;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      .stats-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stat-item:nth-child(2) {
+        border-right: none;
+      }
+    }
+
+    /* ── RESPONSIVE MOBILE ── */
+    @media (max-width: 680px) {
+      header {
+        padding: 0 18px;
+        height: 62px;
+      }
+
+      .logo-name {
+        font-size: 17px;
+      }
+
+      .hero {
+        padding: 56px 18px 48px;
+      }
+
+      .section-wrap {
+        padding: 0 16px;
+      }
+
+      .enquiry-section {
+        padding: 52px 0 60px;
+      }
+
+      .divisions-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .card:last-child {
+        grid-column: auto;
+        max-width: none;
+      }
+
+      .card-photo {
+        height: 215px;
+      }
+
+      .card-body {
+        padding: 20px 20px 24px;
+      }
+
+      .about-section {
+        padding: 0 0 64px;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .story-card {
+        padding: 28px 24px 32px;
+      }
+
+      .about-card {
+        padding: 24px 22px 28px;
+      }
+
+      .stats-strip {
+        grid-template-columns: repeat(2, 1fr);
+        margin-bottom: 60px;
+      }
+
+      .stat-num {
+        font-size: 30px;
+      }
+    }
+
+    /* ── NAV MOBILE ── */
+    @media (max-width: 768px) {
+      header {
+        padding: 10px 18px;
+        flex-wrap: wrap;
+        height: auto;
+      }
+
+      .logo-img {
+        height: 72px;
+      }
+
+      .nav-toggle {
+        display: flex;
+      }
+
+      #main-nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        padding: 10px 0 14px;
+        gap: 2px;
+        order: 3;
+      }
+
+      #main-nav.open {
+        display: flex;
+      }
+
+      .nav-link {
+        padding: 10px 14px;
+        font-size: 13px;
+      }
+    }
+
+    /* ── CONTACT SECTION ── */
+    .contact-section {
+      padding: 72px 0 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-card {
+      background: var(--slate-dark);
+      border-radius: var(--radius);
+      border: 1px solid rgba(212, 175, 55, 0.18);
+      box-shadow: 0 10px 50px rgba(0, 0, 0, 0.18);
+      padding: 52px 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 14px;
+    }
+
+    .contact-label {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      color: var(--gold);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .contact-heading {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: clamp(24px, 3.5vw, 38px);
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+
+    .contact-heading em {
+      color: var(--gold);
+      font-style: normal;
+    }
+
+    .contact-sub {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.55);
+      max-width: 480px;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 28px;
+      border-radius: 12px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    }
+
+    .contact-btn-phone {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+      color: var(--slate-dark);
+      box-shadow: 0 4px 20px rgba(212, 175, 55, 0.35);
+    }
+
+    .contact-btn-email {
+      background: rgba(255, 255, 255, 0.07);
+      color: var(--white);
+      border: 1.5px solid rgba(212, 175, 55, 0.28);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .contact-btn:hover {
+      transform: translateY(-3px);
+      filter: brightness(1.08);
+    }
+
+    .contact-btn:hover.contact-btn-phone {
+      box-shadow: 0 8px 30px rgba(212, 175, 55, 0.5);
+    }
+
+    .contact-btn:hover.contact-btn-email {
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    .contact-divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      border-radius: 2px;
+      margin: 6px 0;
+    }
+
+    @media (max-width: 680px) {
+      .contact-card {
+        padding: 36px 24px;
+      }
+
+      .contact-links {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .contact-btn {
+        justify-content: center;
+      }
+    }
+
+    /* ── SERVICES SECTION ── */
+    .services-section {
+      background: var(--bg);
+      padding: 80px 0;
+      position: relative;
+      z-index: 1;
+      scroll-margin-top: 160px;
+    }
+
+    .srv-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .srv-card {
+      background: #1e293b;
+      /* Reverted to Dark Card BG */
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .srv-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .srv-icon-box {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: white;
+    }
+
+    /* Icon Box Colors */
+    .icon-box-orange {
+      background: #f97316;
+    }
+
+    .icon-box-green {
+      background: #22c55e;
+    }
+
+    .icon-box-blue {
+      background: #3b82f6;
+    }
+
+    .icon-box-purple {
+      background: #a855f7;
+    }
+
+    .icon-box-pink {
+      background: #ec4899;
+    }
+
+    .icon-box-teal {
+      background: #14b8a6;
+    }
+
+    .srv-card-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      color: #ffffff;
+      /* Reverted to White Title */
+      margin-bottom: 8px;
+    }
+
+    .srv-card-desc {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.7);
+      /* Reverted to Muted White */
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .srv-card-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .srv-card-list li {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.6);
+      /* Reverted to Muted White */
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .srv-card-list li::before {
+      content: '•';
+      color: #22c55e;
+      /* Bright Green Bullets */
+      font-size: 18px;
+    }
+
+
+    @media (max-width: 1024px) {
+      .srv-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 680px) {
+      .srv-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .srv-card {
+        padding: 24px;
+      }
+    }
+
+    /* ── SITE OFFICE SECTION ── */
+    .site-office-section {
+      background: #1e5fa0;
+      /* Deep construction blue */
+      color: white;
+      padding: 30px 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .site-office-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .site-office-content {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .site-office-label {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+      color: #ffffff;
+    }
+
+    .site-office-address {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 400px;
+    }
+
+    .site-office-contact {
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      margin-top: 10px;
+      color: #ffffff;
+    }
+
+    .map-container {
+      background: white;
+      padding: 10px;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .map-box {
+      width: 100%;
+      height: 280px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: none;
+    }
+
+    @media (max-width: 1024px) {
+      .site-office-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+      }
+
+      .site-office-address {
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .site-office-section {
+        padding: 30px 0;
+      }
+
+      .map-box {
+        height: 200px;
+      }
+    }
+
+    /* ── FLOATING CONTACT BUTTONS ── */
+    .floating-contact {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .floating-btn {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      color: white;
+      text-decoration: none;
+      font-size: 28px;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+      position: relative;
+    }
+
+    .floating-btn:hover {
+      transform: scale(1.15) rotate(5deg);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    }
+
+    .floating-btn-wa {
+      background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+    }
+
+    .floating-btn-phone {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+    }
+
+    .floating-btn-top {
+      background: transparent;
+      border: 2px solid var(--slate-dark);
+      color: var(--slate-dark);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .floating-btn-top:hover {
+      background: var(--slate-dark);
+      color: var(--white);
+    }
+
+    .floating-btn .btn-tooltip {
+      position: absolute;
+      right: 75px;
+      background: rgba(44, 62, 80, 0.9);
+      color: white;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateX(10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      pointer-events: none;
+    }
+
+    .floating-btn:hover .btn-tooltip {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    @media (max-width: 768px) {
+      .floating-contact {
+        bottom: 20px;
+        right: 20px;
+        gap: 12px;
+      }
+
+      .floating-btn {
+        width: 54px;
+        height: 54px;
+        font-size: 24px;
+      }
+
+      .floating-btn .btn-tooltip {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── HEADER ── -->
+  <header>
+    <a href="#" class="logo-wrap" aria-label="SR Builders">
+      <img src="logo.png" alt="SR Builders Logo" class="logo-img" />
+    </a>
+
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav id="main-nav">
+      <a href="#" class="nav-link active">Home</a>
+      <a href="#about-section" class="nav-link">About</a>
+      <a href="#services-grid" class="nav-link">Services</a>
+      <a href="#featured-projects" class="nav-link">Projects</a>
+      <a href="#footer" class="nav-link">Contact</a>
+    </nav>
+  </header>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <canvas id="aurora-canvas" aria-hidden="true"></canvas>
+    <div style="position:relative;z-index:2">
+      <div class="hero-tag">One Tap Away</div>
+      <h1>Talk to Our <em>Project Team</em><br>Right Now</h1>
+      <p class="hero-sub">
+        Choose your project type below and get connected with the right division expert.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── ENQUIRY CARDS ── -->
+  <section class="enquiry-section">
+    <div class="section-wrap">
+      <div class="section-label">
+        <span class="section-label-text">Our Divisions</span>
+        <span class="section-label-line"></span>
+      </div>
+      <div class="divisions-grid">
+
+        <!-- RESIDENTIAL -->
+        <article class="card" id="card-residential">
+          <div class="card-photo">
+            <img src="project/residential.png" alt="Modern home under construction" loading="lazy" />
+            <div class="photo-veil"></div>
+          </div>
+          <div class="card-body">
+            <div class="card-icon-wrap">🏠</div>
+            <h2 class="card-title">Residential Construction</h2>
+            <p class="card-desc">
+              From individual plots to full housing complexes — we handle every stage of home construction with
+              precision, transparency, and care.
+            </p>
+            <div class="card-rule"></div>
+            <a id="cta-residential" class="wa-btn"
+              href="https://wa.me/919991918125?text=Hi%2C%20I%20am%20interested%20in%20your%20Residential%20projects.%20I'd%20like%20to%20discuss%20a%20home%20construction%20enquiry."
+              target="_blank" rel="noopener noreferrer"
+              aria-label="Enquire about Residential Construction via WhatsApp">
+              <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="currentColor"
+                aria-hidden="true">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+              </svg>
+              Enquire via WhatsApp
+            </a>
+          </div>
+        </article>
+
+        <!-- COMMERCIAL -->
+        <article class="card" id="card-commercial">
+          <div class="card-photo">
+            <img src="project/commercial.png" alt="Commercial office building under development" loading="lazy" />
+            <div class="photo-veil"></div>
+          </div>
+          <div class="card-body">
+            <div class="card-icon-wrap">🏢</div>
+            <h2 class="card-title">Commercial Development</h2>
+            <p class="card-desc">
+              Office towers, retail outlets, and multi-use buildings built to attract business, impress clients, and
+              stand the test of time.
+            </p>
+            <div class="card-rule"></div>
+            <a id="cta-commercial" class="wa-btn"
+              href="https://wa.me/919991918125?text=Hello%2C%20I'm%20reaching%20out%20regarding%20a%20Commercial%20development%20project.%20Please%20provide%20more%20details."
+              target="_blank" rel="noopener noreferrer" aria-label="Enquire about Commercial Development via WhatsApp">
+              <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="currentColor"
+                aria-hidden="true">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+              </svg>
+              Enquire via WhatsApp
+            </a>
+          </div>
+        </article>
+
+        <!-- INDUSTRIAL -->
+        <article class="card" id="card-industrial">
+          <div class="card-photo">
+            <img src="project/industrial.png" alt="Large industrial warehouse under construction" loading="lazy" />
+            <div class="photo-veil"></div>
+          </div>
+          <div class="card-body">
+            <div class="card-icon-wrap">🏭</div>
+            <h2 class="card-title">Industrial Infrastructure</h2>
+            <p class="card-desc">
+              Warehouses, factories, and heavy-duty facilities crafted for maximum output — with strict safety standards
+              and time-bound delivery.
+            </p>
+            <div class="card-rule"></div>
+            <a id="cta-industrial" class="wa-btn"
+              href="https://wa.me/919991918125?text=Greetings%2C%20I%20have%20an%20enquiry%20regarding%20Industrial%20construction%20and%20infrastructure%20services."
+              target="_blank" rel="noopener noreferrer"
+              aria-label="Enquire about Industrial Infrastructure via WhatsApp">
+              <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="currentColor"
+                aria-hidden="true">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+              </svg>
+              Enquire via WhatsApp
+            </a>
+          </div>
+        </article>
+
+      </div><!-- /divisions-grid -->
+    </div>
+  </section>
+
+  <!-- ── FEATURED PROJECTS SECTION ── -->
+  <section class="projects-section" id="featured-projects">
+    <div class="section-wrap">
+      <div class="section-label">
+        <span class="section-label-text">Featured Projects</span>
+        <span class="section-label-line"></span>
+      </div>
+
+      <div class="projects-grid">
+        <!-- 01 Unique Medical -->
+        <article class="p-card">
+          <div class="p-img-area">
+            <img src="project/Unique Medical Devices.jpeg" alt="Unique Medical Devices">
+          </div>
+          <div class="p-content">
+            <h3 class="p-title">Unique Medical Devices</h3>
+            <p class="p-subtitle">Advanced medical facility and manufacturing hub for Unique Medical Devices.</p>
+            <div class="p-meta">
+              <div class="p-meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span>Plot 3, Sec-3, Met City Reliance Dadri Toy, Haryana</span>
+              </div>
+              <div class="p-meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="12" y1="1" x2="12" y2="23"></line>
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+                <span class="p-value-text">Project Value: 2.64 Cr</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 02 Anuradha -->
+        <article class="p-card">
+          <div class="p-img-area">
+            <img src="project/Anuradha Manufactory.jpeg" alt="Manufacturing Company">
+          </div>
+          <div class="p-content">
+            <h3 class="p-title">Anuradha Manufactory</h3>
+            <p class="p-subtitle">Anuradha Green Collar Manufactory Pvt. Ltd. - Industrial Plant.</p>
+            <div class="p-meta">
+              <div class="p-meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span>Plot P-10, St. 7, Sec-2-B, Met City, Haryana</span>
+              </div>
+              <div class="p-meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="12" y1="1" x2="12" y2="23"></line>
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+                <span class="p-value-text">Project Value: 1.28 Cr</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 03 21 Century -->
+        <article class="p-card">
+          <div class="p-img-area">
+            <img src="project/Sukuriti designe.png" alt="Sukuriti design">
+          </div>
+          <div class="p-content">
+            <h3 class="p-title">Sukuriti designe</h3>
+            <p class="p-subtitle">Sukuriti designe-Architecture & Interior design.</p>
+            <div class="p-meta">
+              <div class="p-meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span>Plot no. 14, sec. 3, Met City, Haryana</span>
+              </div>
+              <div class="p-meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="12" y1="1" x2="12" y2="23"></line>
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+                <span class="p-value-text">Project Value: 2.5 Cr</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 04 Boundary Wall -->
+        <article class="p-card">
+          <div class="p-img-area">
+            <img src="project/boundary wall.jpg" alt="Bouandery Wall">
+          </div>
+          <div class="p-content">
+            <h3 class="p-title">Boundary Wall Project</h3>
+            <p class="p-subtitle">5 K.M high-security boundary wall with MS frame systems.</p>
+            <div class="p-meta">
+              <div class="p-meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span>Reliance MET City, Haryana</span>
+              </div>
+              <div class="p-meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="12" y1="1" x2="12" y2="23"></line>
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+                <span class="p-value-text">Project Value: 3.50 Cr</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 05 JSD Engineering -->
+        <article class="p-card">
+          <div class="p-img-area">
+            <img src="project/JDS ENGINEERING.jpeg" alt="JSD Engineering Office" style="object-position: center 20%;">
+          </div>
+          <div class="p-content">
+            <h3 class="p-title">JSD Engineering Office</h3>
+            <p class="p-subtitle">Engineering Company Headquarters and Office Complex.</p>
+            <div class="p-meta">
+              <div class="p-meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span>Plot No 41, Sec-3, MET City, Haryana</span>
+              </div>
+              <div class="p-meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="12" y1="1" x2="12" y2="23"></line>
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+                <span class="p-value-text">Project Value: 1.10 Cr</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 06 Industrial Warehouse -->
+        <article class="p-card">
+          <div class="p-img-area">
+            <img src="project/INDUSTRIAL WAREHOUSE.png" alt="Industrial Warehouse">
+          </div>
+          <div class="p-content">
+            <h3 class="p-title">Industrial Warehouse</h3>
+            <p class="p-subtitle">Private Warehouse Development for Mr. Sukhbeer Ji.</p>
+            <div class="p-meta">
+              <div class="p-meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span>Kheri Sultan, Jhajjar, Haryana</span>
+              </div>
+              <div class="p-meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="12" y1="1" x2="12" y2="23"></line>
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+                <span class="p-value-text">Project Value: 2.20 Cr</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div><!-- /projects-grid -->
+    </div>
+  </section>
+
+  <!-- ── UPCOMING PROJECTS SECTION ── -->
+  <section class="projects-section" id="upcoming-projects"
+    style="background: #f8fafc; border-top: 1px solid rgba(44, 62, 80, 0.05);">
+    <div class="section-wrap">
+      <div class="section-label">
+        <span class="section-label-text">Upcoming Projects</span>
+        <span class="section-label-line"></span>
+      </div>
+
+      <div class="projects-grid">
+        <!-- 01 Modern Industrial Hub -->
+        <article class="p-card">
+          <div class="p-img-area">
+            <img src="project/new1.jpeg" alt="Upcoming Project">
+            <div class="p-tag">Upcoming</div>
+          </div>
+        </article>
+
+        <!-- 02 Premium Logistics Center -->
+        <article class="p-card">
+          <div class="p-img-area">
+            <img src="project/new2.jpeg" alt="Upcoming Project">
+            <div class="p-tag">Upcoming</div>
+          </div>
+        </article>
+
+        <!-- 03 Corporate Plaza -->
+        <article class="p-card">
+          <div class="p-img-area">
+            <img src="project/new3.jpeg" alt="Upcoming Project">
+            <div class="p-tag">Upcoming</div>
+          </div>
+        </article>
+
+      </div><!-- /projects-grid -->
+    </div>
+  </section>
+
+  <!-- ── ABOUT SECTION ── -->
+  <section id="about-section" class="about-section">
+    <div class="section-wrap">
+
+      <div class="section-label">
+        <span class="section-label-text">Our Identity</span>
+        <span class="section-label-line"></span>
+      </div>
+
+      <div class="about-grid">
+        <!-- Story -->
+        <article class="story-card">
+          <div class="card-heading">
+            <div class="card-heading-icon icon-orange">🏗️</div>
+            <h3>Our Journey</h3>
+          </div>
+          <div class="story-body">
+            <p>
+              Founded in 2019, <strong>SR Builders</strong> began with a single vision: to transform the way
+              infrastructure is built in Haryana. What started as a small team of dedicated professionals has grown
+              into a leading construction firm known for precision and reliability.
+            </p>
+            <p>
+              Over the years, we have successfully delivered numerous residential and industrial projects,
+              earning a reputation for transparency and excellence. Our growth is fueled by a commitment
+              to using modern technology while maintaining traditional values of integrity.
+            </p>
+            <div class="story-quote">
+              "We don't just build structures; we build the foundations of a progressing India."
+            </div>
+          </div>
+        </article>
+
+        <!-- Vision & Mission -->
+        <div class="about-right">
+          <article class="about-card">
+            <div class="card-heading">
+              <div class="card-heading-icon icon-teal">👁️</div>
+              <h3>Our Vision</h3>
+            </div>
+            <p class="about-body">
+              To be the most trusted and innovative construction partner in the region, setting benchmarks
+              for quality, safety, and sustainable development that inspire future generations.
+            </p>
+          </article>
+
+          <article class="about-card">
+            <div class="card-heading">
+              <div class="card-heading-icon icon-green">🎯</div>
+              <h3>Our Mission</h3>
+            </div>
+            <p class="about-body">
+              To deliver superior construction services through excellence in project management, rigorous
+              quality standards, and a customer-centric approach that ensures timely delivery of every project.
+            </p>
+          </article>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── STATS STRIP ── -->
+  <div class="section-wrap">
+    <div class="stats-strip">
+      <div class="stat-item">
+        <div class="stat-num">12+</div>
+        <div class="stat-label">Crores Delivered</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">10+</div>
+        <div class="stat-label">Projects Completed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Client Satisfaction</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">7+</div>
+        <div class="stat-label">Years of Excellence</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SERVICES ── -->
+  <section class="services-section" id="services-grid">
+    <div class="section-wrap">
+      <div class="srv-grid">
+        <!-- 01 -->
+        <div class="srv-card">
+          <div class="srv-icon-box icon-box-orange">📄</div>
+          <h3 class="srv-card-title">General Contracting</h3>
+          <p class="srv-card-desc">Complete construction solutions from foundation to finishing for all building types.
+          </p>
+          <ul class="srv-card-list">
+            <li>Site preparation</li>
+            <li>Structural work</li>
+            <li>Building envelope</li>
+            <li>Final finishes</li>
+          </ul>
+        </div>
+
+        <!-- 02 -->
+        <div class="srv-card">
+          <div class="srv-icon-box icon-box-green">📋</div>
+          <h3 class="srv-card-title">Project Management</h3>
+          <p class="srv-card-desc">Expert oversight ensuring projects are completed on time, within budget, and to
+            specification.</p>
+          <ul class="srv-card-list">
+            <li>Planning & scheduling</li>
+            <li>Resource allocation</li>
+            <li>Quality control</li>
+            <li>Risk management</li>
+          </ul>
+        </div>
+
+        <!-- 03 -->
+        <div class="srv-card">
+          <div class="srv-icon-box icon-box-blue">📐</div>
+          <h3 class="srv-card-title">Design-Build Services</h3>
+          <p class="srv-card-desc">Integrated approach combining design and construction for streamlined project
+            delivery.</p>
+          <ul class="srv-card-list">
+            <li>Concept development</li>
+            <li>Engineering design</li>
+            <li>Value engineering</li>
+            <li>Construction execution</li>
+          </ul>
+        </div>
+
+        <!-- 04 -->
+        <div class="srv-card">
+          <div class="srv-icon-box icon-box-purple">🏭</div>
+          <h3 class="srv-card-title">Industrial Construction</h3>
+          <p class="srv-card-desc">Specialized construction for manufacturing facilities, warehouses, and industrial
+            complexes.</p>
+          <ul class="srv-card-list">
+            <li>Heavy foundations</li>
+            <li>Steel structures</li>
+            <li>MEP systems</li>
+            <li>Safety compliance</li>
+          </ul>
+        </div>
+
+        <!-- 05 -->
+        <div class="srv-card">
+          <div class="srv-icon-box icon-box-pink">🏠</div>
+          <h3 class="srv-card-title">Commercial & Residential</h3>
+          <p class="srv-card-desc">Quality construction services for office buildings, retail spaces, and residential
+            projects.</p>
+          <ul class="srv-card-list">
+            <li>Space planning</li>
+            <li>Interior finishing</li>
+            <li>HVAC installation</li>
+            <li>Landscaping</li>
+          </ul>
+        </div>
+
+        <!-- 06 -->
+        <div class="srv-card">
+          <div class="srv-icon-box icon-box-teal">🔧</div>
+          <h3 class="srv-card-title">Renovation & Remodeling</h3>
+          <p class="srv-card-desc">Transform existing spaces with modern upgrades and comprehensive renovation services.
+          </p>
+          <ul class="srv-card-list">
+            <li>Space optimization</li>
+            <li>Structural modifications</li>
+            <li>Modern amenities</li>
+            <li>Energy efficiency</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <!-- ── CONTACT SECTION ── -->
+  <section class="contact-section" id="footer">
+    <div class="section-wrap">
+
+      <div class="section-label">
+        <span class="section-label-text">Get In Touch</span>
+        <span class="section-label-line"></span>
+      </div>
+
+      <div class="contact-card">
+        <p class="contact-label">Contact Us</p>
+        <h2 class="contact-heading">Let's Build Something <em>Great</em> Together</h2>
+        <div class="contact-divider"></div>
+        <p class="contact-sub">
+          Have a project in mind? Reach out directly via phone call or drop us an email — we respond within 24 hours.
+        </p>
+
+        <div class="contact-links">
+          <!-- Phone -->
+          <a href="tel:+919991918125" class="contact-btn contact-btn-phone">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"
+              aria-hidden="true">
+              <path
+                d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.21 2.2z" />
+            </svg>
+            +91-9991918125
+          </a>
+
+          <!-- Email -->
+          <a href="https://mail.google.com/mail/?view=cm&to=srbuilders9999@gmail.com" target="_blank"
+            rel="noopener noreferrer" class="contact-btn contact-btn-email">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"
+              aria-hidden="true">
+              <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+            </svg>
+            srbuilders9999@gmail.com
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── SITE OFFICE SECTION ── -->
+  <section class="site-office-section">
+    <div class="section-wrap">
+      <div class="site-office-grid">
+        <div class="site-office-content">
+          <h2 class="site-office-label">SITE OFFICE:</h2>
+          <p class="site-office-address">
+            OPP. RELAINCE MET CITY GATE NO. SECTOR 5&7 YAKUBPUR<br>
+            JHAJJAR GURGAON HIGHWAY (HR.)
+          </p>
+          <div class="site-office-contact">
+            Contact Us: +91 9991918125 <br>
+            Email Us: srbuilders@gmail.com
+
+          </div>
+        </div>
+        <div class="map-container">
+          <iframe class="map-box"
+            src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3506.44667334184!2d76.76700967549583!3d28.496205975739425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjjCsDI5JzQ2LjMiTiA3NsKwNDYnMTAuNSJF!5e0!3m2!1sen!2sin!4v1773312573193!5m2!1sen!2sin"
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <p class="footer-text">
+      &copy; 2026 <strong>SR Builders</strong>. All rights reserved.&nbsp;&nbsp;|&nbsp;&nbsp;
+      <a href="tel:+919991918125" style="color:rgba(212,175,55,.55);text-decoration:none;">+91-9991918125</a>
+      &nbsp;&nbsp;|&nbsp;&nbsp;
+      <a href="mailto:srbuilders9999@gmail.com"
+        style="color:rgba(212,175,55,.55);text-decoration:none;">srbuilders9999@gmail.com</a>
+    </p>
+  </footer>
+
+
+  <!-- ── AURORA WEBGL SHADER ── -->
+  <script>
+    (function () {
+      const canvas = document.getElementById('aurora-canvas');
+      if (!canvas) return;
+
+      const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+      if (!gl) return;
+
+      /* ── Resize canvas to match hero section ── */
+      function resize() {
+        const hero = canvas.parentElement;
+        canvas.width = hero.offsetWidth;
+        canvas.height = hero.offsetHeight;
+        gl.viewport(0, 0, canvas.width, canvas.height);
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      /* ── Vertex shader ── */
+      const vsrc = `
+        attribute vec2 a_pos;
+        void main() { gl_Position = vec4(a_pos, 0.0, 1.0); }
+      `;
+
+      /* ── Fragment shader – aurora with 3 colour stops, amplitude & blend ── */
+      const fsrc = `
+        precision mediump float;
+        uniform float u_time;
+        uniform vec2  u_res;
+        uniform vec3  u_c0;   /* colorStop 0 */
+        uniform vec3  u_c1;   /* colorStop 1 */
+        uniform vec3  u_c2;   /* colorStop 2 */
+        uniform float u_amp;  /* amplitude   */
+        uniform float u_blend;/* blend       */
+
+        float hash(float n) { return fract(sin(n) * 43758.5453); }
+
+        /* layered sine waves → soft aurora band */
+        float aurora(vec2 uv, float seed) {
+          float v = 0.0;
+          float amp = 1.0;
+          float freq = 1.0;
+          for (int i = 0; i < 6; i++) {
+            v += sin(uv.x * freq + u_time * 0.35 + seed + float(i) * 1.3)
+               * sin(uv.x * freq * 0.5 - u_time * 0.2 + seed * 1.7 + float(i))
+               * amp;
+            freq *= 1.9;
+            amp  *= 0.55;
+          }
+          return v;
+        }
+
+        void main() {
+          vec2 uv = gl_FragCoord.xy / u_res;
+
+          /* centre vertically, scale amplitude */
+          float y  = (uv.y - 0.55) * 2.0;
+          float a0 = aurora(uv * 3.0, 0.0) * u_amp * 0.38;
+          float a1 = aurora(uv * 2.5, 5.3) * u_amp * 0.32;
+          float a2 = aurora(uv * 2.0, 9.7) * u_amp * 0.28;
+
+          /* soft band masks */
+          float m0 = smoothstep(1.0, 0.0, abs(y + a0 - 0.2) * 2.5);
+          float m1 = smoothstep(1.0, 0.0, abs(y + a1 + 0.1) * 3.0);
+          float m2 = smoothstep(1.0, 0.0, abs(y + a2 - 0.5) * 2.8);
+
+          vec3 col  = u_c0 * m0 + u_c1 * m1 + u_c2 * m2;
+          float alpha = clamp((m0 + m1 + m2) * 0.65, 0.0, 1.0);
+
+          /* blend param dims the effect (0=invisible, 1=full) */
+          alpha *= u_blend;
+
+          /* dark base */
+          vec3 base = vec3(0.105, 0.145, 0.188);
+          col = mix(base, col, alpha);
+
+          gl_FragColor = vec4(col, 1.0);
+        }
+      `;
+
+      function compileShader(type, src) {
+        const sh = gl.createShader(type);
+        gl.shaderSource(sh, src);
+        gl.compileShader(sh);
+        return sh;
+      }
+
+      const prog = gl.createProgram();
+      gl.attachShader(prog, compileShader(gl.VERTEX_SHADER, vsrc));
+      gl.attachShader(prog, compileShader(gl.FRAGMENT_SHADER, fsrc));
+      gl.linkProgram(prog);
+      gl.useProgram(prog);
+
+      /* full-screen quad */
+      const buf = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+      const aPos = gl.getAttribLocation(prog, 'a_pos');
+      gl.enableVertexAttribArray(aPos);
+      gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+
+      /* uniform locations */
+      const uTime = gl.getUniformLocation(prog, 'u_time');
+      const uRes = gl.getUniformLocation(prog, 'u_res');
+      const uC0 = gl.getUniformLocation(prog, 'u_c0');
+      const uC1 = gl.getUniformLocation(prog, 'u_c1');
+      const uC2 = gl.getUniformLocation(prog, 'u_c2');
+      const uAmp = gl.getUniformLocation(prog, 'u_amp');
+      const uBlend = gl.getUniformLocation(prog, 'u_blend');
+
+      /* colour stops: #7cff67, #B19EEF, #5227FF */
+      function hex(h) { const n = parseInt(h.replace('#', ''), 16); return [(n >> 16 & 255) / 255, (n >> 8 & 255) / 255, (n & 255) / 255]; }
+      const c0 = hex('#7cff67');
+      const c1 = hex('#B19EEF');
+      const c2 = hex('#5227FF');
+
+      gl.uniform3fv(uC0, c0);
+      gl.uniform3fv(uC1, c1);
+      gl.uniform3fv(uC2, c2);
+      gl.uniform1f(uAmp, 1.0);   /* amplitude = 1  */
+      gl.uniform1f(uBlend, 0.5);   /* blend     = 0.5 */
+
+      let start = null;
+      function render(ts) {
+        if (!start) start = ts;
+        const t = (ts - start) * 0.001;
+        gl.uniform1f(uTime, t);
+        gl.uniform2f(uRes, canvas.width, canvas.height);
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+        requestAnimationFrame(render);
+      }
+      requestAnimationFrame(render);
+    })();
+  </script>
+
+  <!-- ── NAV TOGGLE ── -->
+  <script>
+    document.getElementById('nav-toggle').addEventListener('click', function () {
+      document.getElementById('main-nav').classList.toggle('open');
+    });
+    // Close nav when a link is clicked (mobile)
+    document.querySelectorAll('.nav-link').forEach(function (link) {
+      link.addEventListener('click', function () {
+        document.getElementById('main-nav').classList.remove('open');
+        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  </script>
+
+  <!-- ── FLOATING CONTACT ── -->
+  <div class="floating-contact">
+    <!-- WhatsApp -->
+    <a href="https://wa.me/919991918125?text=Hi!%20I'm%20interested%20in%20SR%20Builders%20projects."
+      class="floating-btn floating-btn-wa" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+      <span class="btn-tooltip">Chat on WhatsApp</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+      </svg>
+    </a>
+    <!-- Phone -->
+    <a href="tel:+919991918125" class="floating-btn floating-btn-phone" aria-label="Call Us">
+      <span class="btn-tooltip">Call Us</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+        <path
+          d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.21 2.2z" />
+      </svg>
+    </a>
+    <!-- Top -->
+    <a href="#" class="floating-btn floating-btn-top" aria-label="Back to Top">
+      <span class="btn-tooltip">Back to Top</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z" />
+      </svg>
+    </a>
+  </div>
+
+</body>
+
+</html>
